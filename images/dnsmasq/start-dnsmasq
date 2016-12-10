@@ -1,0 +1,12 @@
+#!/bin/sh'
+
+: ${VPN_DHCP_RANGE:=172.31.254.100,172.31.254.200}
+: ${VPN_NAME=vpn}
+
+export VPN_NAME VPN_DHCP_RANGE
+
+exec dnsmasq -k --bind-dynamic \
+	--log-facility=- \
+	--except-interface=lo \
+	--dhcp-range=$VPN_DHCP_RANGE \
+	--interface=$VPN_NAME

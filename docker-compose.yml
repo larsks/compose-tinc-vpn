@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+
+  tinc:
+    build: images/tinc
+    privileged: true
+
+  dnsmasq:
+    build: images/dnsmasq
+    privileged: true
+    network_mode: service:tinc
