@@ -2,14 +2,33 @@ version: "2"
 
 services:
 
-  tinc:
-    build: images/tinc
-    privileged: true
+  network:
+    image: kubernetes/pause
     ports:
       - "655:655/udp"
       - "655:655"
 
+  tinc:
+    build: images/tinc
+    privileged: true
+    network_mode: service:network
+
   dnsmasq:
     build: images/dnsmasq
     privileged: true
-    network_mode: service:tinc
+    network_mode: service:network
+
+  quagga-zebra:
+    build: images/quagga
+    privileged: true
+    network_mode: service:network
+    command: zebra
+
+  quagga-ospfd:
+    build: images/quagga
+    privileged: true
+    network_mode: service:network
+    command: ospfd
+    volumes_from:
+      - quagga-zebra
+
