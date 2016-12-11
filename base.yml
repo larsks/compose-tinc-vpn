@@ -13,11 +13,6 @@ services:
     privileged: true
     network_mode: service:network
 
-  dnsmasq:
-    build: images/dnsmasq
-    privileged: true
-    network_mode: service:network
-
   quagga-zebra:
     build: images/quagga
     privileged: true

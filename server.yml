@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+
+  dnsmasq:
+    build: images/dnsmasq
+    privileged: true
+    network_mode: service:network
