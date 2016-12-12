@@ -1,8 +1,5 @@
 #!/bin/sh
 
 : ${VPN_NAME:=vpn}
-: ${VPN_CIDR:=172.31.254.1/24}
-
-export VPN_NAME VPN_CIDR
-
+export VPN_NAME
 exec tincd -D -n $VPN_NAME -d
