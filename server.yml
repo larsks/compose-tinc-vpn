@@ -5,4 +5,4 @@ services:
   dnsmasq:
     build: images/dnsmasq
     privileged: true
-    network_mode: service:network
+    network_mode: service:tinc
