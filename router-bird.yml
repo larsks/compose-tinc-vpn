@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  bird:
+    build: images/bird
+    privileged: true
+    network_mode: service:tinc
+    command: bird
+    volumes:
+      - "./bird:/etc/bird"

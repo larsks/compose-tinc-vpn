@@ -8,18 +8,3 @@ services:
     ports:
       - "655:655/udp"
       - "655:655"
-
-  quagga-zebra:
-    build: images/quagga
-    privileged: true
-    network_mode: service:tinc
-    command: zebra
-
-  quagga-ospfd:
-    build: images/quagga
-    privileged: true
-    network_mode: service:tinc
-    command: ospfd
-    volumes_from:
-      - quagga-zebra
-
