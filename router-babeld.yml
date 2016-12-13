@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  babeld:
+    build: images/babeld
+    privileged: true
+    network_mode: service:tinc
+    command: babeld -C 'redistribute metric 128' vpn
