@@ -1,6 +1,14 @@
 version: "2"
 
 services:
+
+  tinc:
+    build: images/tinc
+    privileged: true
+    ports:
+      - "655:655/udp"
+      - "655:655"
+
   babeld:
     build: images/babeld
     privileged: true

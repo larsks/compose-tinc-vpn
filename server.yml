@@ -2,6 +2,19 @@ version: "2"
 
 services:
 
+  tinc:
+    build: images/tinc
+    privileged: true
+    ports:
+      - "655:655/udp"
+      - "655:655"
+
+  babeld:
+    build: images/babeld
+    privileged: true
+    network_mode: service:tinc
+    command: babeld -c /etc/babeld/babeld.conf vpn
+
   dnsmasq:
     build: images/dnsmasq
     privileged: true
