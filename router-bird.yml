@@ -1,8 +1,0 @@
-version: "2"
-
-services:
-  bird:
-    build: images/bird
-    privileged: true
-    network_mode: service:tinc
-    command: bird -f -c /etc/bird/bird.conf
