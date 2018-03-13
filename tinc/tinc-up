@@ -1,8 +1,14 @@
 #!/bin/sh
 
+ROUTES="/etc/tinc/$VPN_NAME/routes"
+
 sysctl -w net.ipv6.conf.$INTERFACE.disable_ipv6=0
 ip addr add $VPN_ADDR/$VPN_PREFIX dev $INTERFACE
 ip link set $INTERFACE up
+
+if [ -f "$ROUTES" ]; then
+	xargs -iNET ip route add NET dev $INTERFACE < $ROUTES
+fi
 
 if ! iptables -t nat -C POSTROUTING -o eth0 -j MASQUERADE; then
 	iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
