@@ -1,5 +1,17 @@
 #!/bin/sh
 
 : ${VPN_NAME:=vpn}
-export VPN_NAME
-exec tincd -D -n $VPN_NAME -d
+: ${VPN_PREFIX:=24}
+
+if [ -z "$VPN_NODE" ]; then
+	echo "ERROR: no vpn nodename assigned" >&2
+	exit 1
+fi
+
+if [ -z "$VPN_ADDR" ]; then
+	echo "ERROR: no vpn address assigned" >&2
+	exit 1
+fi
+
+export VPN_NAME VPN_ADDR VPN_PREFIX VPN_NODE
+exec tincd -D -n $VPN_NAME -d -o Name=$VPN_NODE
