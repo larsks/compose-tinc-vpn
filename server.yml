@@ -8,14 +8,10 @@ services:
     ports:
       - "655:655/udp"
       - "655:655"
-
-  babeld:
-    build: images/babeld
-    privileged: true
-    network_mode: service:tinc
-    command: babeld -c /etc/babeld/babeld.conf vpn
-
-  dnsmasq:
-    build: images/dnsmasq
-    privileged: true
-    network_mode: service:tinc
+    environment:
+      VPN_NAME: $VPN_NAME
+      VPN_ADDR: $VPN_ADDR
+      VPN_NODE: $VPN_NODE
+    volumes:
+      - "./tinc:/etc/tinc/$VPN_NAME"
+      - "./hosts:/etc/tinc/$VPN_NAME/hosts"
