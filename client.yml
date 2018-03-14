@@ -12,3 +12,4 @@ services:
     volumes:
       - "./tinc:/etc/tinc/$VPN_NAME"
       - "./hosts:/etc/tinc/$VPN_NAME/hosts"
+    restart: always
