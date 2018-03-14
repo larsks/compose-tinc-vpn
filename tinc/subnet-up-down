@@ -1,0 +1,28 @@
+#!/bin/sh
+
+log_and_exec() {
+	echo '* ' "$@"
+	"$@"
+}
+
+subnet_up() {
+	if [ "$NODE" != "$NAME" ]; then
+		log_and_exec ip route add $SUBNET dev $INTERFACE proto 42
+	fi
+}
+
+subnet_down() {
+	if [ "$NODE" != "$NAME" ]; then
+		log_and_exec ip route del $SUBNET dev $INTERFACE proto 42
+	fi
+}
+
+case $0 in
+	(*-down)
+	subnet_down
+	;;
+
+	(*-up)
+	subnet_up
+	;;
+esac
