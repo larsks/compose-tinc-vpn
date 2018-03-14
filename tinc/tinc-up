@@ -6,10 +6,6 @@ TINC_UP_LOCAL="/etc/tinc/$VPN_NAME/tinc-up-local"
 ip addr add $VPN_ADDR/$VPN_PREFIX dev $INTERFACE
 ip link set $INTERFACE up
 
-if [ -f "$ROUTES" ]; then
-	xargs -iNET ip route add NET dev $INTERFACE < $ROUTES
-fi
-
 if [ -x "$TINC_UP_LOCAL" ]; then
 	$TINC_UP_LOCAL
 fi
