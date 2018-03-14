@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+DNSMASQDIR=/run/dnsmasq
+SERVERSCONFDIR=$DNSMASQDIR/servers.conf.d
+SERVERSCONF=$DNSMASQDIR/servers.conf
+
+echo "# $(date)" > $SERVERSCONF
+cat $SERVERSCONFDIR/* >> $SERVERSCONF
+kill -HUP 1
