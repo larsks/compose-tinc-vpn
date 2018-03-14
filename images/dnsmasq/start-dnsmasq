@@ -1,5 +1,0 @@
-#!/bin/sh'
-
-: ${VPN_NAME=vpn}
-export VPN_NAME
-exec dnsmasq -k -C /etc/tinc/$VPN_NAME/dnsmasq.conf
