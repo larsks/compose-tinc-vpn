@@ -1,1 +1,1 @@
-/run/dnsmasq/servers.conf.d IN_CLOSE_WRITE,IN_DELETE /bin/update-servers-conf
+/run/dnsmasq/servers.conf.d IN_CLOSE_WRITE,IN_DELETE /usr/bin/flock /var/lock/dnsmasq /bin/update-servers-conf
