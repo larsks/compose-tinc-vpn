@@ -7,4 +7,5 @@ exec dnsmasq -k \
 	--user=root \
 	--conf-file=/dev/null \
 	--conf-dir='/etc/dnsmasq.d,*.conf' \
-	--servers-file=/run/dnsmasq/servers.conf
+	--servers-file=/run/dnsmasq/servers.conf \
+	"$@"
