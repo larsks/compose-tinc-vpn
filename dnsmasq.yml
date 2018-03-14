@@ -5,6 +5,9 @@ services:
   dnsmasq:
     build: images/dnsmasq
     restart: always
+    environment:
+      DNSMASQ_LISTEN_ADDR: $DNSMASQ_LISTEN_ADDR
+
     volumes:
       - "dnsmasq:/run/dnsmasq"
 
