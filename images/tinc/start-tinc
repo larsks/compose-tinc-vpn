@@ -14,4 +14,4 @@ if [ -z "$VPN_ADDR" ]; then
 fi
 
 export VPN_NAME VPN_ADDR VPN_PREFIX VPN_NODE
-exec tincd -D -n $VPN_NAME -d -o Name=$VPN_NODE
+exec tincd "$@" -n $VPN_NAME -o Name=$VPN_NODE
