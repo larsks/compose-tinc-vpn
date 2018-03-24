@@ -1,4 +1,5 @@
 FROM alpine
+RUN rm -f /etc/motd
 RUN apk add --update openssh-server
 RUN adduser -D proxy < /dev/null; \
 	passwd=$(dd if=/dev/urandom bs=1 count=32 | sha256sum | head -c 32); \
