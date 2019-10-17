@@ -13,3 +13,8 @@ services:
       - "./tinc:/etc/tinc/$VPN_NAME"
       - "./hosts:/etc/tinc/$VPN_NAME/hosts"
     restart: always
+
+  hosts_updater:
+    build: images/hosts_updater
+    volumes:
+      - "./hosts:/v/hosts"
