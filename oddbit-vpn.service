@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/bin/podman run \
+	--env-file=/etc/oddbit/vpn.conf \
+	-v /etc/oddbit/tinc-up-local:/etc/tinc/vpn/tinc-up-local \
+	--net=host \
+	--privileged \
+	oddbit/vpn
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
