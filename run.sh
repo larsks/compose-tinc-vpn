@@ -5,9 +5,9 @@ set -e
 . ./.env
 
 podman run \
-	-e VPN_NAME=$VPN_NAME \
-	-e VPN_ADDR=$VPN_ADDR \
-	-e VPN_NODE=$VPN_NODE \
+	-e VPN_NAME="${VPN_NAME:-vpn}" \
+	-e VPN_NODE="${VPN_NODE}" \
+	-e VPN_ADDR=${VPN_ADDR}" \
 	-v ./tinc:/etc/tinc/$VPN_NAME \
 	-v ./hosts:/etc/tinc/$VPN_NAME/hosts \
 	-v "/run/dnsmasq/servers.conf.d:/run/dnsmasq/servers.conf.d" \
