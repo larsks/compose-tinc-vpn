@@ -1,6 +1,14 @@
 #!/bin/sh
 
-: ${VPN_NAME:=vpn}
+if [ -z "$VPN_NAME" ]; then
+	echo "ERROR: no vpn name has been set" >&2
+	exit 1
+fi
+
+if ! [ -d "/etc/tinc/$VPN_NAME" ]; then
+	echo "ERROR: missing vpn configuration directory" >&2
+	exit 1
+fi
 
 if [ -z "$VPN_NODE" ]; then
 	echo "ERROR: no vpn nodename assigned" >&2

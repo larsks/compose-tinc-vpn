@@ -1,0 +1,17 @@
+[Service]
+ExecStartPre=-/usr/bin/podman container rm -f vpn-%i
+ExecStartPre=/bin/mkdir -p /run/dnsmasq/servers.conf.d
+ExecStart=/usr/bin/podman run \
+	--name vpn-%i \
+	--env-file=/etc/tinc/%i/vpn.conf \
+	-e VPV_NAME=%i \
+	-v /etc/tinc/%i:/etc/tinc/%i/ \
+	-v /run/dnsmasq/servers.conf.d:/run/dnsmasq/servers.conf.d \
+	--net=host \
+	--pid=host \
+	--privileged \
+	oddbit/vpn
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
